@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Auto3D.Web.ViewModels.Inquiries.InquiriesAllViewModel>
+@{ ViewData["Title"] = "All Orders"; }
+
+<div class="container">
+    <h3 class="text-center">@this.ViewData["Title"]</h3>
+    @if (Model.Any())
+    {
+<table class="table table-hover" style="width: 100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RecipientName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Subject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>
+            <th scope="col" class="text-center">Details</th>
+            <th scope="col" class="text-center">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var inquiry in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => inquiry.RecipientName)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => inquiry.Subject)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => inquiry.CreateDate)
+            </td>
+            <td>
+                <div class="row justify-content-center">
+                    <a class="btn btn-block btn-primary text-white mb-3" style="width: 150px" asp-area="Administration" asp-controller="Inquiries" asp-action="Details" asp-route-id="@inquiry.Id">Details</a>
+                </div>
+            </td>
+            <td>
+                <div class="row justify-content-center">
+                    <a class="btn btn-block btn-info text-white mb-3" style="width: 150px" asp-area="Administration" asp-controller="Inquiries" asp-action="Delete" asp-route-id="@inquiry.Id">Delete</a>
+                </div>
+            </td>
+
+        </tr>
+}
+    </tbody>
+</table> }
+else
+{
+<div class="jumbotron">
+    <p class="text-center">
+        <em class="text-muted">No inquiries added.</em>
+    </p>
+</div>}
+
+</div>

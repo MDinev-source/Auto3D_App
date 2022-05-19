@@ -1,0 +1,118 @@
+﻿@model Auto3D.Web.ViewModels.Inquiries.InquiryCreateInputModel
+@{ ViewData["Title"] = "Do you have any questions? Please do not hesitate to contact us directly. Our team will come back to you within a matter of hours to help you.";}
+
+<section class="p-3 p-md-5 m-md-3" style="background: #EEF2FF;">
+    <div class="container containerContacts">
+        <!--Section heading-->
+        <h3 class="text-center">Contact us</h3>
+        <!--Section description-->
+        <p class="text-center w-responsive mx-auto mb-5">
+            @this.ViewData["Title"]
+        </p>
+
+        <div class="row">
+
+            @*Grid column*@
+            <div class="col-md-6 mb-md-0 mb-0  ">
+
+                <form id="contact-form" name="contact-form" enctype="multipart/form-data" asp-controller="Inquiries" asp-action="Create" method="post">
+
+                    <div asp-validation-summary="All" class="text-danger"></div>
+
+
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <div class="md-form mb-0 form-group">
+                                <label asp-for="RecipientName" class="control-label"></label>
+                                <input asp-for="RecipientName" class="form-control" />
+                                <span asp-validation-for="RecipientName" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="md-form mb-0 form-group">
+                                <label asp-for="RecipientEmail" class="control-label"></label>
+                                <input asp-for="RecipientEmail" class="form-control" />
+                                <span asp-validation-for="RecipientEmail" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="md-form mb-0 form-group">
+                                <label asp-for="RecipientPhoneNumber" class="control-label"></label>
+                                <input asp-for="RecipientPhoneNumber" class="form-control" />
+                                <span asp-validation-for="RecipientPhoneNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="md-form mb-0 form-group">
+                                <label asp-for="Subject" class="control-label"></label>
+                                <input asp-for="Subject" class="form-control" />
+                                <span asp-validation-for="Subject" class="text-danger"></span>
+                            </div>
+                        </div>
+              
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            <div class="md-form mb-0 form-group">
+                                <label asp-for="Message" class="control-label"></label>
+                                <textarea asp-for="Message" rows="4" class="form-control"></textarea>
+                                <span asp-validation-for="Message" class="text-danger"></span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="md-form mb-0 form-group">
+                                <label asp-for="Pictures"></label>
+                                <input asp-for="Pictures" class="form-control-file" />
+                                <span asp-validation-for="Pictures" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center text-md-left">
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </div>
+
+                </form>
+
+                <div class="status"></div>
+            </div>
+            <!--Grid column-->
+            <!--Grid column-->
+            <div class="col-md-6 text-center">
+                <ul class="list-unstyled mb-0">
+                    <li>
+                        <i class="fas fa-map-marker-alt fa-2x"></i>
+                        <p>San Francisco, CA 94126, USA</p>
+                    </li>
+
+                    <li>
+                        <i class="fas fa-phone mt-4 fa-2x"></i>
+                        <p>+ 01 234 567 89</p>
+                    </li>
+
+                    <li>
+                        <i class="fas fa-envelope mt-4 fa-2x"></i>
+                        <p>contact@mdbootstrap.com</p>
+                    </li>
+                </ul>
+            </div>
+            <!--Grid column-->
+
+        </div>
+    </div>
+</section> 

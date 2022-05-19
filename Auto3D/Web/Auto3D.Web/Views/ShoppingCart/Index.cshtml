@@ -1,0 +1,126 @@
+﻿@model Auto3D.Web.ViewModels.ShoppingCart.ShoppingCartProductsAllViewModel
+@{ ViewData["Title"] = "Shopping Cart";
+    var shoppingCartUserId = Model.Products.Select(x => x.ShoppingCartUserId).FirstOrDefault();
+    var shoppingCartCoupon = Model.Products.Select(x => x.ProductDiscount != "No Discount").FirstOrDefault();}
+
+<div class="p-3 p-md-5 m-md-3" style="background: #EEF2FF ">
+    <div class="container body-content">
+        <h3 class="text-center">@this.ViewData["Title"]</h3>
+        <table class="table table-hover table-borderless" style="width: 100%" id="shoppingCart">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center">Product Name</th>
+                    <th scope="col" class="text-center">Car Brand</th>
+                    <th scope="col" class="text-center">Car Model</th>
+                    <th scope="col" class="text-center">Car Model Year</th>
+                    <th scope="col" class="text-center">Product Price</th>
+                    @if (shoppingCartCoupon)
+                    {
+        <th scope="col" class="text-center">Coupon Discount</th>}
+
+                    <th scope="col" class="text-center">Quantity</th>
+                    <th scope="col" class="text-center">Actions</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Products)
+                {
+                <tr>
+                    <td>
+                        <a class="text-dark" asp-area="" asp-controller="Products" asp-action="Details" asp-route-id="@item.ProductId">
+                            @item.ProductName
+                        </a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CarBrand)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CarModel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CarModelYear)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductPrice)$
+                    </td>
+                    @if (shoppingCartCoupon)
+                    {
+                @if (item.ProductDiscount != "No Discount")
+                {
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductDiscount)$
+                </td> }
+                else
+                {
+                <td>
+                    Promotion
+                </td>}
+                    }
+                                    <td>
+                                        @if (this.User.IsInRole(GlobalConstants.UserRoleName))
+                                        {
+                    <form method="post" asp-area="" asp-controller="ShoppingCart" asp-action="Edit" asp-route-id="@item.Id" asp-route-newQuantity="newQuantity">
+                        <div class="row">
+                            <input type="number" min="1" id="newQuantity" name="newQuantity" class="form-control form-control-sm col-sm-3" value="@item.Quantity" />&nbsp;
+                            <button type="submit" class="btn btn-sm btn-outline-primary">Edit</button>
+                        </div>
+                    </form> }
+                else
+                {
+                <form class="text-center" method="post" asp-area="" asp-controller="ShoppingCart" asp-action="Edit" asp-route-id="@item.ProductId" asp-route-newQuantity="newQuantity">
+                    <div class="row">
+                        <input type="number" id="newQuantity" name="newQuantity" class="form-control form-control-sm col-md-3" value="@item.Quantity" />
+                        <button type="submit" class="btn btn-sm btn-outline-primary">Edit</button>
+                    </div>
+                </form>}
+                                    </td>
+                                                        <td>
+                                                            @if (this.User.IsInRole(GlobalConstants.UserRoleName))
+                                                            {
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }) }
+                                    else
+                                    {
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProductId })}
+                                                        </td>
+                                                                        </tr>
+}
+            </tbody>
+        </table>
+        <div class="">
+            <div class="text-center">
+                <h5>Total sum: @Model.Products.Sum(x => x.ShoppingCartProductTotalPrice) $</h5>
+                <div class="row d-flex justify-content-around">
+
+                    @if (this.User.IsInRole(GlobalConstants.UserRoleName))
+                    {
+
+        <form method="get" asp-controller="ShoppingCart" asp-action="Index">
+
+            <div class="col text-left">
+                <div class="row">
+                    <div class="form-group">
+                        <input class="btn btn-outline-primary" type="text" asp-for="Coupon" />
+                        <input class="btn btn-outline-primary" type="submit" value="Discount" />
+                    </div>
+                </div>
+            </div>
+        </form>
+                        <a type="submit" class="btn btn-primary" asp-area="" asp-controller="Orders" asp-action="Create">Завърши поръчката</a>}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#shoppingCart')
+                .addClass('nowrap')
+                .dataTable({
+                    responsive: true,
+                });
+        });
+    </script>
+}

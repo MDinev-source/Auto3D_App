@@ -1,0 +1,92 @@
+﻿@model Auto3D.Web.ViewModels.Cars.CarsAllViewModel
+
+@{
+    var brand = Model.Cars.Select(x => x.Brand).FirstOrDefault();
+    ViewData["Title"] = $"Models for {brand}";}
+
+
+
+<div class="album p-3 p-md-5 m-md-3 text-center" style="background: #EEF2FF " id="two">
+    <div class="my-3 py-3">
+        <h2>
+            @this.ViewData["Title"]
+
+            @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+            {
+<a type="button" class=" btn btn-primary" asp-area="Administration" asp-controller="Cars" asp-action="Create" asp-route-brandId="@Model.BrandId">Add Model</a>}
+        </h2>
+    </div>
+
+    <div class="container">
+
+        <form method="get" asp-controller="Cars" asp-action="All">
+            <div class="row d-flex justify-content-between">
+                <input type="hidden" asp-for="@Model.BrandId" />
+                @*<div class="form-group">
+                        <label class="text-primary">Search</label>
+                        <input class="btn btn-outline-primary" name="SearchString" value="@Model.SearchString">
+                        <button type="submit" class="btn btn-outline-primary"><i class="fas fa-search"></i></button>
+                    </div>*@
+                <input type="hidden" name="Page" value="@Model.PageNumber">
+                <div class="form-group">
+                    <label class="text-primary">Show</label>
+                    <select class="btn btn-outline-primary" name="PageSize" onchange="this.form.submit();">
+                        <option value="6" selected="@(Model.PageSize == 6 ? true : false)">6</option>
+                        <option value="12" selected="@(Model.PageSize == 12 ? true : false)">12</option>
+                        <option value="24" selected="@(Model.PageSize == 24 ? true : false)">24</option>
+                        <option value="48" selected="@(Model.PageSize == 48 ? true : false)">48</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="text-primary">Sort by</label>
+                    <select class="btn btn-outline-primary" name="Sorter" id="Sorter" onchange="this.form.submit();">
+                        <option value="1" selected="@(Model.Sorter.ToString() == "Model" ? true : false)">Model</option>
+                        <option value="2" selected="@(Model.Sorter.ToString() == "Year" ? true : false)">Year (desc.)</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+        <hr />
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 ">
+            @foreach (var item in Model.Cars)
+            {
+    <div class="col-lg-3 col-sm-12 col-12 d-flex flex-column my-2">
+        <div class="card shadow">
+
+            <a asp-controller="Products" asp-action="All" asp-route-carId="@item.Id">
+                <img style="height: 170px; width: 100%" class="card-img-top shadow" src="@item.PictureUrl" alt="Card image cap">
+            </a>
+  
+            <div class="card-body p-0">
+                <h5 class="card-text m-0">@item.Brand @item.Model</h5>
+                <p class="card-text text-muted pb-1">@item.Year</p>
+            </div>
+
+            <div class="btn-group">
+                @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                {
+                    <a type="button" class="btn btn-sm btn-outline-secondary button" asp-area="Administration" asp-controller="Cars" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    <a type="button" class="btn btn-sm btn-outline-secondary" asp-area="Administration" asp-controller="Cars" asp-action="Delete" asp-route-id="@item.Id">Delete</a>} 
+            </div>
+        </div>
+</div>}
+        </div>
+    </div>
+    <div class="d-flex justify-content-around">
+        @Html.PagedListPager((IPagedList)Model.Cars,
+                                                 page => Url.Action("All",
+                                                     new
+                                                     {
+                                                         PageNumber = page,
+                                                         PageSize = Model.PageSize,
+                                                         Sorter = Model.Sorter,
+                                                     }),
+                                                 new PagedListRenderOptions
+                                                 {
+                                                     MaximumPageNumbersToDisplay = 5,
+                                                     LiElementClasses = new string[] { "page-item" },
+                                                     PageClasses = new string[] { "page-link" }
+                                                 })
+    </div>
+</div>

@@ -1,0 +1,57 @@
+﻿@{
+    this.ViewData["Title"] = "Home Page";
+}
+
+@section Styles{
+    <link href="@Url.Content("~/css/sideNav.css")" rel="stylesheet" type="text/css" />
+}
+
+
+<div class="position-relative overflow-hidden p-3 p-md-3 m-md-3 text-center bg-light" id="zero" style="background: #EEF2FF; ">
+    <div class="col-md-10 p-lg-1 mx-auto mt-2 text-dark ">
+        <h3>Enjoy @GlobalConstants.SystemName and find out best 3D printing solutions!  <button class="btn btn-primary">Learn more</button></h3>
+    </div>
+
+    <div class="col-md-12 p-lg-1 mx-auto mb-5 text-white">
+        <cache expires-after="@TimeSpan.FromHours(3)">
+            <partial name="_CarouselPartial" />
+        </cache>
+    </div>
+</div>
+
+<hr />
+<partial name="_CarBrandsPartial" />
+
+<hr />
+<partial name="_TopPartsPartial" />
+
+<hr />
+<partial name="_ContactFormPartial" />
+
+<hr/>
+<partial name="_PartnerLogosPartial" />
+
+<partial name="_SideNavPartial" />
+
+@section NavIndex{
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-0 text-left">
+        <div class="container-xl">
+            <div class="navbar-collapse collapse" id="navbarsExample07XL">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link pr-2 pl-0 py-0 text-primary d-inline" href="#zero" id="first">Начало</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pr-2 py-0 text-primary d-inline" href="#one" id="second">Марки</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pr-2 py-0 text-primary d-inline" href="#two" id="third">Актуални</a>
+                    </li>
+                    <li class="nav-item">
+                       <a class="nav-link pr-2 py-0 text-primary d-inline" href="#three" id="fourth">Контакти</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+}

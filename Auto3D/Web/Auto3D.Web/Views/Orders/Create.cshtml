@@ -1,0 +1,62 @@
+﻿@model Auto3D.Web.ViewModels.Orders.OrderCreateInputModel
+@{ ViewData["Title"] = "Finish order";}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <form enctype="multipart/form-data" asp-area="" asp-controller="Orders" asp-action="Create" method="post" class="text-center col-md-4">
+
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <h4>@this.ViewData["Title"]</h4>
+            <hr />
+            <div class="form-group">
+                <label asp-for="@Model.RecipientFullName"></label>
+                <input asp-for="@Model.RecipientFullName" class="form-control col-md-12" />
+                <span asp-validation-for="@Model.RecipientFullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.RecipientPhoneNumber"></label>
+                <input asp-for="@Model.RecipientPhoneNumber" class="form-control col-md-12" />
+                <span asp-validation-for="@Model.RecipientPhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.DeliveryAddress"></label>
+                <input asp-for="@Model.DeliveryAddress" class="form-control-file" />
+                <span asp-validation-for="@Model.DeliveryAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Message"></label>
+                <textarea asp-for="@Model.Message" rows="4" class="form-control" placeholder="Add message"></textarea>
+                <span asp-validation-for="@Model.Message" class="text-danger"></span>
+            </div>
+            <h6>if you need to enter a contact email other than your account email.</h6>
+            <div class="form-group">
+                <label asp-for="@Model.Email"></label>
+                <input asp-for="@Model.Email" class="form-control-file" />
+                <span asp-validation-for="@Model.Email" class="text-danger"></span>
+            </div>
+            <h6>If you need invoice, please fill the data.</h6>
+            <div class="form-group">
+                <label asp-for="@Model.CompanyName"></label>
+                <input asp-for="@Model.CompanyName" class="form-control col-md-12" />
+                <span asp-validation-for="@Model.CompanyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.CompanyAddress"></label>
+                <input asp-for="@Model.CompanyAddress" class="form-control col-md-12" />
+                <span asp-validation-for="@Model.CompanyAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.CICNumber"></label>
+                <input asp-for="@Model.CICNumber" class="form-control col-md-12" />
+                <span asp-validation-for="@Model.CICNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.AccountablePerson"></label>
+                <input asp-for="@Model.AccountablePerson" class="form-control col-md-12" />
+                <span asp-validation-for="@Model.AccountablePerson" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Finish Order</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <CodeAnalysisRuleSet>..\..\Rules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="..\..\stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CloudinaryDotNet" Version="1.17.0" />
+    <PackageReference Include="CommandLineParser" Version="2.8.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.6" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.312" PrivateAssets="all">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="X.PagedList" Version="8.1.0" />
+    <PackageReference Include="X.PagedList.Web.Common" Version="8.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Auto3D.Common\Auto3D.Common.csproj" />
+    <ProjectReference Include="..\..\Data\Auto3D.Data.Common\Auto3D.Data.Common.csproj" />
+    <ProjectReference Include="..\..\Data\Auto3D.Data.Models\Auto3D.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Data\Auto3D.Data\Auto3D.Data.csproj" />
+    <ProjectReference Include="..\..\Services\Auto3D.Services.Data\Auto3D.Services.Data.csproj" />
+    <ProjectReference Include="..\..\Services\Auto3D.Services.Mapping\Auto3D.Services.Mapping.csproj" />
+    <ProjectReference Include="..\..\Services\Auto3D.Services.Messaging\Auto3D.Services.Messaging.csproj" />
+    <ProjectReference Include="..\..\Services\Auto3D.Services\Auto3D.Services.csproj" />
+  </ItemGroup>
+
+</Project>

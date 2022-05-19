@@ -1,0 +1,47 @@
+﻿@model Auto3D.Web.ViewModels._AdministratorInputModels.Products.ProductCreateinputModel
+
+@{ this.ViewData["Title"] = "Create Product";}
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <form enctype="multipart/form-data" asp-area="Administration" asp-controller="Products" asp-action="Create" method="post" class="text-center col-md-4">
+                <input type="hidden" asp-for="@Model.CarId" value="@Model.CarId" />
+
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <h4>@this.ViewData["Title"]</h4>
+                <hr />
+                <div class="form-group">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" class="form-control col-md-12" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description"></label>
+                    <textarea asp-for="Description" rows="4" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="small text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PictureUrl"></label>
+                    <input asp-for="PictureUrl" class="form-control-file" />
+                    <span asp-validation-for="PictureUrl" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Price"></label>
+                    <input asp-for="Price" class="form-control col-md-12" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Discount"></label>
+                    <input asp-for="Discount" class="form-control col-md-12" />
+                    <span asp-validation-for="Discount" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Add Product</button>
+            </form>
+        </div>
+    </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

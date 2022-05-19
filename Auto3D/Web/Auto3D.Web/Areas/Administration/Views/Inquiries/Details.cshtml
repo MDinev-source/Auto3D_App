@@ -1,0 +1,51 @@
+﻿@model Auto3D.Web.ViewModels.Inquiries.InquiryDetailsViewModel
+
+@{ ViewData["Title"] = $"Details {Model.RecipientName}";
+    var count = 1;}
+
+<div class="album p-3 p-md-5 m-md-3 text-center" style="background: #EEF2FF " id="two">
+    <div class="my-3 py-3">
+        <h2> @this.ViewData["Title"]</h2>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-4 col-sm-12 col-12 d-flex flex-column my-2">
+                <div class="card" style="width: 100%;">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Full name: @Model.RecipientName</li>
+                        <li class="list-group-item">Email: @Model.RecipientEmail</li>
+                        @if (Model.RecipientPhoneNumber != null)
+                        {
+            <li class="list-group-item">Phone: @Model.RecipientPhoneNumber</li>}
+                        <li class="list-group-item">Subject: @Model.Subject</li>
+                        <li class="list-group-item">Message: @Model.Message</li>
+                    </ul>
+                </div>
+                <div class="mt-1">
+                    <a class="btn btn-block btn-info text-white mb-3" style="width: 100%" asp-area="Administration" asp-controller="Inquiries" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+                </div>
+            </div>
+            <div class="col-lg-8 col-sm-12 col-12 d-flex flex-column my-2">
+                <div class="container">
+                    <div class="row">
+                        @if (Model.Pictures.Any())
+                        {
+                            foreach (var item in Model.Pictures)
+                            {
+                    <div class="gallery-item" data-index="@count">
+                        <img src="@item.Path" style="height:100%; width:100%;">
+                    </div>
+                    count++;
+                                    }
+                                }
+                    </div>
+                </div>
+                </div>
+            </div>
+                                                </div>
+
+</div>
+
+<link rel="stylesheet" type="text/css" href="/css/photoGallery.css">
+
+<script type="text/javascript" src="~/js/photoGallery.js"></script>
