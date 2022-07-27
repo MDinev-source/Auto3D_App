@@ -1,0 +1,58 @@
+﻿@{ this.ViewData["Title"] = "Home Page"; }
+
+@section Styles{
+    <link href="@Url.Content("~/css/sideNav.css")" rel="stylesheet" type="text/css" />
+}
+
+
+<div class="position-relative overflow-hidden pt-3 p-md-3 mb-2 text-center bg-light" id="zero" style="background: white !important; ">
+    <div class="col-md-12 mx-auto mt-2 text-dark ">
+        <h3>Наслади се на @GlobalConstants.SystemName и открий най-добрите оферти за теб!  <button class="btn btn-primary">Learn more</button></h3>
+    </div>
+
+    <div class="col-md-12 p-lg-0 mx-auto text-white">
+        <cache expires-after="@TimeSpan.FromHours(3)">
+            <partial name="_CarouselPartial" />
+        </cache>
+    </div>
+</div>
+
+<hr class="mb-2" />
+<partial name="_CarBrandsPartial" />
+
+<hr class="mt-2" />
+<partial name="_TopPartsPartial" />
+
+<hr />
+<partial name="_PartnerLogosPartial" />
+
+<hr />
+<partial name="_ContactFormPartial" />
+
+<partial name="_SideNavPartial" />
+
+@section NavIndex{
+    <nav class="navbar navbar-expand-lg navbar-dark py-0 text-left" style="background: #303841;">
+        <div class="container-xl">
+            <div class="navbar-collapse collapse" id="navbarsExample07XL">
+                <ul class="navbar-nav mr-auto" >
+                    <li class="nav-item">
+                        <small class="border-right d"><a class="nav-link pr-2 pl-0 py-0 text-primary d-inline" href="#zero" id="first">Начало</a></small>
+                    </li>
+                    <li class="nav-item">
+                        <small class="border-right d"><a class="nav-link pr-2 py-0 text-primary d-inline" href="#one" id="second">Марки</a></small>
+                    </li>
+                    <li class="nav-item">
+                        <small class="border-right d"><a class="nav-link pr-2 py-0 text-primary d-inline" href="#two" id="third">Актуални</a></small>
+                    </li>
+                    <li class="nav-item">
+                        <small class="border-right d"><a class="nav-link pr-2 py-0 text-primary d-inline" href="#three" id="fourth">Партньори</a></small>
+                    </li>
+                    <li class="nav-item">
+                        <small><a class="nav-link pr-2 py-0 text-primary d-inline" href="#four" id="fifth">Контакти</a></small>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+}

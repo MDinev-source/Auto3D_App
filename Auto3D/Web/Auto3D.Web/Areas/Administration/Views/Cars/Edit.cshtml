@@ -1,0 +1,44 @@
+﻿@model Auto3D.Web.ViewModels.Cars.CarEditViewModel
+
+@{ ViewData["Title"] = "Edit View"; }
+
+<div class="row justify-content-center">
+    <form method="post" class="col-md-6" asp-area="Administration" asp-controller="Cars" asp-action="Edit"
+          enctype="multipart/form-data">
+
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <h1 class="text-center">@this.ViewData["Title"]</h1>
+
+        <hr />
+
+        <div class="form-group">
+            <label asp-for="Model"></label>
+            <input asp-for="Model" class="form-control" />
+            <span asp-validation-for="Model" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Year"></label>
+            <input asp-for="Year" class="form-control" />
+            <span asp-validation-for="Year" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Picture"></label>
+            <input asp-for="Picture" class="form-control-file" />
+            <span asp-validation-for="Picture" class="text-danger"></span>
+        </div>
+
+        <div class="row ">
+            <div class="col d-flex justify-content-center" style="width: 100%">
+                <input type="submit" style="width: 150px" value="Edit" class="btn btn-warning mr-1 ml-1" />
+                <a class="btn btn-danger  ml-1 mr-1" style="width: 150px" asp-area="Administration" asp-controller="CarBrands" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

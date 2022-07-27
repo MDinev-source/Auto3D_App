@@ -1,0 +1,25 @@
+﻿.side {
+    background-color: #161616;
+    position: fixed;
+    font-size: 15px;
+    text-decoration: none;
+    Color: black;
+    padding: 5px 4px 10px 20px;
+    border-radius: 0px 5px 5px 0px;
+    left: -105px;
+    transition: 0.3s;
+    z-index: 1;
+    top: 250px;
+    width: 120px;
+}
+
+    .side:hover {
+        left: 0;
+        background: #EFEFEF;
+    }
+
+.sidenav i {
+    float: right;
+    padding-top: 5px
+}
+

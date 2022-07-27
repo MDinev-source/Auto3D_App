@@ -1,0 +1,44 @@
+﻿@model Auto3D.Web.ViewModels.Index.IndexAllViewModel
+
+@{ this.ViewData["Title"] = "Best Parts"; }
+
+@section Styles{
+    <link href="@Url.Content("~/css/carouselTopParts.css")" rel="stylesheet" type="text/css" />
+}
+
+
+<div class="album text-center pt-5 pb-5" id="two">
+    <div>
+        <h2> @this.ViewData["Title"]</h2>
+    </div>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 ">
+            @foreach (var item in Model.Products)
+            {
+        <div class="col-lg-4 col-sm-12 col-12 d-flex flex-column my-2">
+            <div class="card">
+
+                <a asp-controller="Products" asp-action="Details" asp-route-id="@item.Id">
+                    <img style="height: 250px; width: 100%" class="card-img-top shadow" src="@item.PictureUrl" alt="Card image cap">
+                </a>
+
+                <div class="card-body p-0">
+                    <h5 class="card-text m-1">@item.Name @item.CarBrand @item.CarModel @item.CarYear</h5>
+   
+                    @if (item.Discount == 0)
+                    {
+        <h4 class="card-text p-1">$@item.Price</h4> }
+    else
+    {
+        <h4 class="card-text p-1"><small><s>$@item.Price</s></small> /$@item.Discount</h4>}
+
+                </div>
+
+                <div class="btn-group">
+                    <a type="button" class="btn btn-sm btn-outline-secondary button" asp-area="" asp-controller="Products" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                </div>
+            </div>
+        </div>}
+        </div>
+    </div>
+</div>

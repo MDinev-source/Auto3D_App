@@ -1,0 +1,57 @@
+﻿@model Auto3D.Web.ViewModels.Orders.OrderDetailsViewModel
+
+@{ ViewData["Title"] = $"Details {Model.RecipientFullName}"; }
+<div class="album p-3 p-md-5 m-md-3 text-center" style="background: #EEF2FF " id="two">
+    <div class="my-3 py-3">
+        <h2> @this.ViewData["Title"]</h2>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-4 col-sm-12 col-12 d-flex flex-column my-2">
+                <div class="card" style="width: 100%;">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Full name: @Model.RecipientFullName</li>
+                        <li class="list-group-item">Phone: @Model.RecipientPhoneNumber</li>
+                        <li class="list-group-item">Email: @Model.Email</li>
+                        <li class="list-group-item">Delivery addreess: @Model.DeliveryAddress</li>
+                        <li class="list-group-item">Message: @Model.Message</li>
+                        <li class="list-group-item">Total order price: @Model.OrderTotalPrice</li>
+                        @if (Model.CompanyName != null
+                       && Model.AccountablePerson != null
+                       && Model.CompanyAddress != null
+                       && Model.CICNumber != null)
+                        {
+                        <li class="list-group-item">Company name: @Model.CompanyName</li>
+                        <li class="list-group-item">Company address: @Model.CompanyAddress</li>
+                        <li class="list-group-item">Acountable person: @Model.AccountablePerson</li>
+                        <li class="list-group-item">Cic number: @Model.CICNumber</li>
+                        }
+                    </ul>
+                </div>
+                    <div class="mt-1">
+                        <a class="btn btn-block btn-info text-white mb-3" style="width: 100%" asp-area="Administration" asp-controller="Orders" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+                    </div>
+            </div>
+            <div class="col-lg-8 col-sm-12 col-12 d-flex flex-column my-2">
+                <div class="row">
+                    @foreach (var item in Model.Products)
+                    {
+                    <div class="col-lg-4 col-sm-12 col-12 d-flex flex-column my-2">
+                    <div class="card">
+
+                <img style="height: 170px; width: 100%" class="card-img-top shadow" src="@item.ProductPictureUrl" alt="Card image cap">
+
+                <div class="card-body ">
+                    <h6 class="card-text m-1">@item.ProductName @item.CarBrand @item.CarModel @item.CarYear</h6>
+                     <p class="card-text m-0">Price: @item.ProductPrice</p>
+                    <p class="card-text m-0">Quantity: @item.Quantity</p>
+                    <p class="card-text m-0">Total price: @item.TotalProductPrice</p>
+                </div>
+            </div>
+        </div>}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

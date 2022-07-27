@@ -1,0 +1,7 @@
+﻿namespace Auto3D.Services.Mapping
+{
+    // ReSharper disable once UnusedTypeParameter
+    public interface IMapFrom<T>
+    {
+    }
+}

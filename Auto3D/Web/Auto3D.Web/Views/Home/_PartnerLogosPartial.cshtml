@@ -1,0 +1,53 @@
+﻿@model Auto3D.Web.ViewModels.Index.IndexAllViewModel
+
+@{ this.ViewData["Title"] = "Our partners";}
+
+    <div class="container h-100 containerSlider pt-5 pb-5" id="three">
+        <div class="row align-items-center h-100">
+            <div class="container rounded containerSlider">
+                <h2 class="text-center">
+                    @this.ViewData["Title"]
+                    @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                    {
+                        <a type="button" class=" btn btn-primary" asp-area="Administration" asp-controller="PartnerLogos" asp-action="Create">Add Logo</a>}
+                </h2>
+                <div class="slider">
+                        @if (Model.Logos.Any())
+                        {
+                    <div class="logos">
+                            @foreach (var item in Model.Logos)
+                            {
+
+                                <img src="@item.Path" style="width:64px; height:100%" class="fab"/>
+                            }
+                    </div>
+                    <div class="logos">
+                
+                            @foreach (var item in Model.Logos)
+                            {
+
+                                <img src="@item.Path" style="width: 64px; height: 100%"  class="fab"/>
+                            }
+                        
+                        </div>
+                        }
+                        @*<div class="logos">
+
+                <i class="fab fa-js fa-4x"></i>
+                <i class="fab fa-linkedin-in fa-4x"></i>
+                <i class="fab fa-dribbble fa-4x"></i>
+                <i class="fab fa-medium-m fa-4x"></i>
+                <i class="fab fa-github fa-4x"></i>
+            </div>
+            <div class="logos">
+                <i class="fab fa-js fa-4x"></i>
+                <i class="fab fa-linkedin-in fa-4x"></i>
+                <i class="fab fa-dribbble fa-4x"></i>
+                <i class="fab fa-medium-m fa-4x"></i>
+                <i class="fab fa-github fa-4x"></i>
+            </div>*@
+                    </div>
+                </div>
+        </div>
+
+    </div>

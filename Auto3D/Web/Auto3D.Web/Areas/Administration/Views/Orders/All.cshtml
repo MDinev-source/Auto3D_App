@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Auto3D.Web.ViewModels.Orders.OrdersAllViewModel>
+@{ ViewData["Title"] = "All Orders"; }
+
+<div class="container">
+    <h3 class="text-center">@this.ViewData["Title"]</h3>
+    @if (Model.Any())
+    {
+<table class="table table-hover" style="width: 100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserFullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CorrespondenceEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>
+            <th scope="col" class="text-center">Details</th>
+            <th scope="col" class="text-center">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => order.UserFullName)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => order.CorrespondenceEmail)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => order.CreateDate)
+            </td>
+            <td>
+                <div class="row justify-content-center">
+                    <a class="btn btn-block btn-primary text-white mb-3" style="width: 150px" asp-area="Administration" asp-controller="Orders" asp-action="Details" asp-route-id="@order.Id">Details</a>
+                </div>
+            </td>
+            <td>
+                <div class="row justify-content-center">
+                    <a class="btn btn-block btn-info text-white mb-3" style="width: 150px" asp-area="Administration" asp-controller="Orders" asp-action="Delete" asp-route-id="@order.Id">Delete</a>
+                </div>
+            </td>
+
+        </tr>
+}
+    </tbody>
+</table> }
+else
+{
+<div class="jumbotron">
+    <p class="text-center">
+        <em class="text-muted">No orders added.</em>
+    </p>
+</div>}
+
+</div>
